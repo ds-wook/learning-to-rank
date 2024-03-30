@@ -6,7 +6,7 @@ from pathlib import Path
 import hydra
 from omegaconf import DictConfig
 
-from data import load_dataset
+from data import load_train_dataset
 from models import bulid_model
 
 
@@ -16,7 +16,7 @@ def _main(cfg: DictConfig):
         warnings.filterwarnings("ignore", category=UserWarning)
 
         # load dataset
-        X_train, X_test, y_train, y_test = load_dataset(cfg)
+        X_train, X_test, y_train, y_test = load_train_dataset(cfg)
 
         # choose trainer
         trainer = bulid_model(cfg)

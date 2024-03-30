@@ -18,8 +18,6 @@ def load_dataset(cfg: DictConfig) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series
     user_info = pd.read_csv(path / "user_info.csv")
     relavence_scores = relavence_scores[~(relavence_scores["user_id"] == 11100)]
     popular_genres = OmegaConf.to_container(cfg.data.popular_genres)
-    features = OmegaConf.to_container(cfg.data.features)
-
     anime_genre_info_df = create_genre_flags(anime_info_df, popular_genres)
 
     anime_info_df_final = anime_info_df.merge(anime_genre_info_df, on="anime_id")
@@ -28,6 +26,13 @@ def load_dataset(cfg: DictConfig) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series
         col if col == "anime_id" else f"ANIME_FEATURE {col}".upper() for col in anime_info_df_final.columns
     ]
     user_info.columns = [col if col == "user_id" else f"USER_FEATURE {col}".upper() for col in user_info.columns]
+
+    return anime_info_df_final, relavence_scores, user_info
+
+
+def load_train_dataset(cfg: DictConfig) -> pd.DataFrame:
+    anime_info_df_final, relavence_scores, user_info = load_dataset(cfg)
+    features = OmegaConf.to_container(cfg.data.features)
 
     train_interim = relavence_scores.merge(anime_info_df_final, on="anime_id")
     train = train_interim.merge(user_info, how="inner")
@@ -49,3 +54,14 @@ def load_dataset(cfg: DictConfig) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series
     )
 
     return X_train, X_test, y_train, y_test
+
+
+def load_test_dataset(cfg: DictConfig) -> tuple[dict[int, list[str]], list[str], dict[int, list[str]]]:
+    anime_info_df_final, relavence_scores, _ = load_dataset(cfg)
+    user_2_anime_df = relavence_scores.groupby("user_id").agg({"anime_id": lambda x: list(set(x))})
+    user_2_anime_map = dict(zip(user_2_anime_df.index, user_2_anime_df["anime_id"]))
+    candidate_pool = anime_info_df_final["anime_id"].unique().tolist()
+    anime_id_2_name = relavence_scores.drop_duplicates(subset=["anime_id", "Name"])[["anime_id", "Name"]]
+    anime_id_2_name_map = dict(zip(anime_id_2_name["anime_id"], anime_id_2_name["Name"]))
+
+    return user_2_anime_map, candidate_pool, anime_id_2_name_map
