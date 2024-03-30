@@ -5,12 +5,12 @@ params:
   boosting_type: gbdt
   metric: map
   learning_rate: 0.01
-  max_depth: 7
+  max_depth: -1
   num_leaves: 31
   verbose: -1
   n_jobs: -1
 
-early_stopping_rounds: 250
-num_boost_round: 1000
+early_stopping_rounds: 300
+num_boost_round: 10000
 verbose_eval: 100
 seed: 42

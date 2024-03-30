@@ -7,6 +7,7 @@ import lightgbm as lgb
 import numpy as np
 import pandas as pd
 from omegaconf import DictConfig
+from prettytable import PrettyTable
 
 from data import load_dataset, load_test_dataset
 from models import BulidModel
@@ -59,10 +60,16 @@ def _main(cfg: DictConfig):
         feature_columns=cfg.data.features,
         anime_id_2_name_map=anime_id_2_name_map,
         ranker=ranker,
-        N=10,
+        N=cfg.N,
     )
 
-    print(predictions)
+    table = PrettyTable()
+    table.field_names = ["Anime Name", "Predicted Score", "Already Liked"]
+
+    for _, row in predictions.iterrows():
+        table.add_row([row["name"], row["score"], row[f"already_liked - sample[{cfg.N}]"]])
+
+    print(table)
 
 
 if __name__ == "__main__":
