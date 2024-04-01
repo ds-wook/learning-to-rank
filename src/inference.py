@@ -24,7 +24,7 @@ def generate_predictions(
     ranker: BulidModel,
     N: int = 100,
 ):
-    anime_info_df_final, relavence_scores, user_info = load_dataset(cfg)
+    anime_info_df_final, _, user_info = load_dataset(cfg)
     already_liked, candidates = candidate_generation(user_id, candidate_pool, user_2_anime_map, N=10000)
     candidates_df = pd.DataFrame(data=pd.Series(candidates, name="anime_id"))
     features = anime_info_df_final.merge(candidates_df)
@@ -64,10 +64,10 @@ def _main(cfg: DictConfig):
     )
 
     table = PrettyTable()
-    table.field_names = ["Anime Name", "Predicted Score", "Already Liked"]
+    table.field_names = ["Anime Name", "Already Liked", "Predicted Score"]
 
     for _, row in predictions.iterrows():
-        table.add_row([row["name"], f"{row['score']:.3f}", row[f"already_liked - sample[{cfg.N}]"]])
+        table.add_row([row["name"], row[f"already_liked - sample[{cfg.N}]"], f"{row['score']:.3f}"])
 
     print(table)
 

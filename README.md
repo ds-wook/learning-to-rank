@@ -26,6 +26,21 @@ TBD
 
 
 ## Benchmark
-TBD
 
-## Result
+
+
+## Results
+
+#### LightGBM
+|Anime Name|Predicted Score|Already Liked|
+|----------|:-----------:|-------------|
+|         Shukka Fuufu         |      Majo no Takkyuubin      |      3.025      |
+|  Samayou Midara na Lunatics  |    Tenkuu no Shiro Laputa    |      3.025      |
+|            Dallos            |       Pumpkin Scissors       |      3.025      |
+|         Inori no Te          |       Omoide Poroporo        |      2.967      |
+|     Hortensia Saga (TV)      | Heisei Tanuki Gassen Ponpoko |      2.967      |
+|  Top Secret: The Revelation  |       Tonari no Totoro       |      2.828      |
+|       Junlin Chengxia        |         Zetsuai 1989         |      2.828      |
+|        Chargeman Ken!        |           Monster            |      2.828      |
+| Miss Monochrome: Music Clips |         xxxHOLiC Kei         |      2.828      |
+|          Kabi Usagi          |       Shounen Onmyouji       |      2.739      |

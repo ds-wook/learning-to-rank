@@ -4,7 +4,7 @@ import lightgbm as lgb
 import numpy as np
 import pandas as pd
 import xgboost as xgb
-from catboost import CatBoostRegressor, Pool
+from catboost import CatBoostRanker, Pool
 from omegaconf import DictConfig, OmegaConf
 
 from models import BaseModel
@@ -49,12 +49,14 @@ class CatBoostTrainer(BaseModel):
         y_train: pd.Series | np.ndarray,
         X_valid: pd.DataFrame | np.ndarray | None = None,
         y_valid: pd.Series | np.ndarray | None = None,
-    ) -> CatBoostRegressor:
-        train_set = Pool(X_train, y_train, cat_features=self.cfg.tools.categorical_features)
-        valid_set = Pool(X_valid, y_valid, cat_features=self.cfg.tools.categorical_features)
+    ) -> CatBoostRanker:
+        train_groups = X_train.index.to_numpy()  # user_id query
+        valid_groups = X_valid.index.to_numpy()  # user_id query
+        train_set = Pool(X_train, y_train, cat_features=self.cfg.tools.categorical_features, group_id=train_groups)
+        valid_set = Pool(X_valid, y_valid, cat_features=self.cfg.tools.categorical_features, group_id=valid_groups)
 
         params = OmegaConf.to_container(self.cfg.models.params)
-        model = CatBoostRegressor(random_state=self.cfg.models.seed, **params)
+        model = CatBoostRanker(random_state=self.cfg.models.seed, **params)
 
         model.fit(
             train_set,

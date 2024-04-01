@@ -6,6 +6,7 @@ hydra:
 defaults:
   - _self_
   - data: dataset
+  - tools: features
   - models: lightgbm
   - override hydra/hydra_logging: disabled
   - override hydra/job_logging: disabled
