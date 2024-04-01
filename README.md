@@ -1,5 +1,5 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)  
-# learning-to-rank
+# Learning-to-rank
 This Repository built a lambdarank algorithm for anime recommendations with gradient boosting algorithm.
 The code style has been configured to use Black, and the maximum line length has been set to 120 characters.
 
@@ -22,7 +22,8 @@ $ sh scripts/run.sh
 
 
 ## Learning to Rank
-TBD
+![image](https://github.com/ds-wook/learning-to-rank/assets/46340424/2ff9bbb4-4b21-4c00-87ad-47d140426dc7)
+
 
 
 ## Benchmark
@@ -59,3 +60,8 @@ TBD
 |                Kunimatsu-sama no Otoridai               |           Monster            |      3.639      |
 |                Girls Bravo: Second Season               |         xxxHOLiC Kei         |      3.628      |
 |                          Comics                         |       Shounen Onmyouji       |      3.599      |
+
+
+## Reference
++ [Which Tricks are Important for Learning to Rank?](https://openreview.net/pdf?id=MXfTQp8bZF)
++ [ARE NEURAL RANKERS STILL OUTPERFORMED BY GRADIENT BOOSTED DECISION TREES?](https://openreview.net/pdf?id=Ut1vF_q_vC)
