@@ -23,7 +23,7 @@ def generate_predictions(
     anime_id_2_name_map: dict[int, list[str]],
     ranker: BulidModel,
     N: int = 100,
-):
+) -> pd.DataFrame:
     anime_info_df_final, _, user_info = load_dataset(cfg)
     already_liked, candidates = candidate_generation(user_id, candidate_pool, user_2_anime_map, N=10000)
     candidates_df = pd.DataFrame(data=pd.Series(candidates, name="anime_id"))
@@ -42,7 +42,7 @@ def generate_predictions(
     predictions = predictions.sort_values(by="score", ascending=False).head(N)
 
     predictions[f"already_liked - sample[{N}]"] = [
-        anime_id_2_name_map.get(id_) for id_ in already_liked[0 : len(predictions)]
+        anime_id_2_name_map.get(_id) for _id in already_liked[0 : len(predictions)]
     ]
     return predictions
 
