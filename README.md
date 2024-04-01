@@ -52,7 +52,6 @@ TBD
 |:--------------------------------------------------------|:----------------------------:|:---------------:|
 |                     Kirari Kagayaku                     |      Majo no Takkyuubin      |      4.234      |
 |                       Oh Baby Plus                      |    Tenkuu no Shiro Laputa    |      4.152      |
-|               Wanna. SpartanSex Spermax!!!              |       Pumpkin Scissors       |      4.152      |
 |          Taiyou to Tsuki no Kodomo-tachi (2018)         |       Omoide Poroporo        |      4.071      |
 |       Inazuma Eleven: Saikyou Gundan Ogre Shuurai       | Heisei Tanuki Gassen Ponpoko |      3.798      |
 | Sylvanian Families Mini Gekijou: Omoigakenai Okyakusama |       Tonari no Totoro       |      3.798      |
