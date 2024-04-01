@@ -67,7 +67,7 @@ def _main(cfg: DictConfig):
     table.field_names = ["Anime Name", "Predicted Score", "Already Liked"]
 
     for _, row in predictions.iterrows():
-        table.add_row([row["name"], row["score"], row[f"already_liked - sample[{cfg.N}]"]])
+        table.add_row([row["name"], f"{row['score']:.3f}", row[f"already_liked - sample[{cfg.N}]"]])
 
     print(table)
 
