@@ -10,6 +10,3 @@ defaults:
   - models: lightgbm
   - override hydra/hydra_logging: disabled
   - override hydra/job_logging: disabled
-
-model_path: res/models/
-results: lightgbm_ranker

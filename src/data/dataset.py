@@ -36,15 +36,12 @@ def load_train_dataset(cfg: DictConfig) -> pd.DataFrame:
 
     train_interim = relavence_scores.merge(anime_info_df_final, on="anime_id")
     train = train_interim.merge(user_info, how="inner")
-    na_counts = train.isna().sum() * 100 / len(train)
 
-    train_processed = train.drop(na_counts[na_counts > 50].index, axis=1)
-
-    train_processed = train_processed.sort_values(by="user_id")
-    train_processed = train_processed.set_index("user_id")
+    train = train.sort_values(by="user_id")
+    train = train.set_index("user_id")
 
     test_size = int(1e5)
-    X, y = train_processed[features], train_processed[cfg.data.target].apply(lambda x: int(x * 10))
+    X, y = train[features], train[cfg.data.target].apply(lambda x: int(x * 10))
     test_idx_start = len(X) - test_size
     X_train, X_test, y_train, y_test = (
         X.iloc[0:test_idx_start],

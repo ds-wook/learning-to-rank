@@ -6,6 +6,7 @@ import hydra
 import lightgbm as lgb
 import numpy as np
 import pandas as pd
+from catboost import CatBoostRanker
 from omegaconf import DictConfig
 from prettytable import PrettyTable
 
@@ -51,7 +52,12 @@ def generate_predictions(
 def _main(cfg: DictConfig):
     user_2_anime_map, candidate_pool, anime_id_2_name_map = load_test_dataset(cfg)
 
-    ranker = lgb.Booster(model_file=Path(cfg.model_path) / f"{cfg.results}.model")
+    ranker = (
+        lgb.Booster(model_file=Path(cfg.models.model_path) / f"{cfg.models.results}.model")
+        if cfg.models.name == "lightgbm"
+        else CatBoostRanker().load_model(Path(cfg.models.model_path) / f"{cfg.models.results}.model")
+    )
+
     predictions = generate_predictions(
         cfg=cfg,
         user_id=123,

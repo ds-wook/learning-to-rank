@@ -25,7 +25,7 @@ def _main(cfg: DictConfig):
         ranker = trainer.fit(X_train, y_train, X_test, y_test)
 
         # save model
-        ranker.save_model(Path(cfg.model_path) / f"{cfg.results}.model", num_iteration=ranker.best_iteration)
+        ranker.save_model(Path(cfg.models.model_path) / f"{cfg.models.results}.model")
 
 
 if __name__ == "__main__":

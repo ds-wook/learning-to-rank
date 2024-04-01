@@ -1,5 +1,8 @@
 name: catboost
 
+model_path: res/models/
+results: catboost_ranker
+
 params:
   task_type: CPU
   loss_function: YetiRank

@@ -1,5 +1,8 @@
 name: lightgbm
 
+model_path: res/models/
+results: lightgbm_ranker
+
 params:
   objective: lambdarank
   boosting_type: gbdt
