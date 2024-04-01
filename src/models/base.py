@@ -15,6 +15,7 @@ from omegaconf import DictConfig
 from pytorch_tabnet.tab_model import TabNetRegressor
 from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import KFold
+from typing_extensions import Self
 
 
 @dataclass
@@ -24,12 +25,12 @@ class ModelResult:
 
 
 class BaseModel(ABC):
-    def __init__(self, cfg: DictConfig) -> None:
+    def __init__(self: Self, cfg: DictConfig) -> None:
         self.cfg = cfg
 
     @abstractmethod
     def _fit(
-        self,
+        self: Self,
         X_train: pd.DataFrame | np.ndarray,
         y_train: pd.Series | np.ndarray,
         X_valid: pd.DataFrame | np.ndarray | None = None,
@@ -41,7 +42,7 @@ class BaseModel(ABC):
         joblib.dump(self.result, save_dir)
 
     def fit(
-        self,
+        self: Self,
         X_train: pd.DataFrame | np.ndarray,
         y_train: pd.Series | np.ndarray,
         X_valid: pd.DataFrame | np.ndarray | None = None,
@@ -51,7 +52,7 @@ class BaseModel(ABC):
 
         return model
 
-    def run_cv_training(self, X: pd.DataFrame, y: pd.Series) -> None:
+    def run_cv_training(self: Self, X: pd.DataFrame, y: pd.Series) -> None:
         oof_preds = np.zeros(X.shape[0])
         models = {}
         kfold = KFold(n_splits=self.cfg.data.n_splits, shuffle=True, random_state=self.cfg.data.seed)

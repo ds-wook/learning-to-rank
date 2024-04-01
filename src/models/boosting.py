@@ -6,6 +6,7 @@ import pandas as pd
 import xgboost as xgb
 from catboost import CatBoostRanker, Pool
 from omegaconf import DictConfig, OmegaConf
+from typing_extensions import Self
 
 from models import BaseModel
 
@@ -15,7 +16,7 @@ class XGBoostTrainer(BaseModel):
         super().__init__(cfg)
 
     def _fit(
-        self,
+        self: Self,
         X_train: pd.DataFrame | np.ndarray,
         y_train: pd.Series | np.ndarray,
         X_valid: pd.DataFrame | np.ndarray | None = None,
@@ -44,7 +45,7 @@ class CatBoostTrainer(BaseModel):
         super().__init__(cfg)
 
     def _fit(
-        self,
+        self: Self,
         X_train: pd.DataFrame | np.ndarray,
         y_train: pd.Series | np.ndarray,
         X_valid: pd.DataFrame | np.ndarray | None = None,
@@ -73,7 +74,7 @@ class LightGBMTrainer(BaseModel):
         super().__init__(cfg)
 
     def _fit(
-        self,
+        self: Self,
         X_train: pd.DataFrame | np.ndarray,
         y_train: pd.Series | np.ndarray,
         X_valid: pd.DataFrame | np.ndarray | None = None,
