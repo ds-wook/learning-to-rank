@@ -32,7 +32,8 @@ TBD
 
 ## Results
 
-#### LightGBM
+#### <center>LightGBM Recommendation</center>
+
 |                       Anime Name                      |        Already Liked         | Predicted Score |
 |:------------------------------------------------------|:----------------------------:|:---------------:|
 |  Pokemon Movie 02: Maboroshi no Pokemon Lugia Bakutan |      Majo no Takkyuubin      |      3.025      |
@@ -46,7 +47,7 @@ TBD
 |          Xiong Chumo Zhi: Chunri Dui Dui Peng         |         xxxHOLiC Kei         |      2.649      |
 |                   Kazoku no Hanashi                   |       Shounen Onmyouji       |      2.641      |
 
-#### Catboost
+#### <center>CatBoost Recommendation</center>
 
 |                  Anime Name                  |        Already Liked         | Predicted Score |
 |:---------------------------------------------|:----------------------------:|:---------------:|
