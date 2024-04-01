@@ -32,8 +32,8 @@ TBD
 ## Results
 
 #### LightGBM
-|Anime Name|Predicted Score|Already Liked|
-|----------|:-----------:|-------------|
+|Anime Name|Already Liked|Predicted Score|
+|:----------|:-----------:|:-------------:|
 |         Shukka Fuufu         |      Majo no Takkyuubin      |      3.025      |
 |  Samayou Midara na Lunatics  |    Tenkuu no Shiro Laputa    |      3.025      |
 |            Dallos            |       Pumpkin Scissors       |      3.025      |
