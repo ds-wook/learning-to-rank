@@ -48,18 +48,18 @@ TBD
 
 #### Catboost
 
-|                        Anime Name                       |        Already Liked         | Predicted Score |
-|:--------------------------------------------------------|:----------------------------:|:---------------:|
-|                     Kirari Kagayaku                     |      Majo no Takkyuubin      |      4.234      |
-|                       Oh Baby Plus                      |    Tenkuu no Shiro Laputa    |      4.152      |
-|          Taiyou to Tsuki no Kodomo-tachi (2018)         |       Omoide Poroporo        |      4.071      |
-|       Inazuma Eleven: Saikyou Gundan Ogre Shuurai       | Heisei Tanuki Gassen Ponpoko |      3.798      |
-| Sylvanian Families Mini Gekijou: Omoigakenai Okyakusama |       Tonari no Totoro       |      3.798      |
-|                    Shouwa Monogatari                    |         Zetsuai 1989         |      3.755      |
-|                Kunimatsu-sama no Otoridai               |           Monster            |      3.639      |
-|                Girls Bravo: Second Season               |         xxxHOLiC Kei         |      3.628      |
-|                          Comics                         |       Shounen Onmyouji       |      3.599      |
-
+|                  Anime Name                  |        Already Liked         | Predicted Score |
+|:---------------------------------------------|:----------------------------:|:---------------:|
+|   Shaonu Qianxian: Renxing Xiao Juchang 2    |      Majo no Takkyuubin      |      4.152      |
+| Digimon Adventure: 20 Shuunen Memorial Story |    Tenkuu no Shiro Laputa    |      4.152      |
+|              Koneko no Rakugaki              |       Pumpkin Scissors       |      4.071      |
+|                Chiisana Jumbo                |       Omoide Poroporo        |      3.959      |
+|    Sam to Chip no wa Hachamecha Dai Race     | Heisei Tanuki Gassen Ponpoko |      3.798      |
+|               Ringo to Shoujo                |       Tonari no Totoro       |      3.798      |
+|                  Shake-chan                  |         Zetsuai 1989         |      3.755      |
+|                 ChäoS;Child                  |           Monster            |      3.601      |
+|               Tamagawa Kyoudai               |         xxxHOLiC Kei         |      3.599      |
+|                Inazuma Eleven                |       Shounen Onmyouji       |      3.599      |
 
 ## Reference
 + [Which Tricks are Important for Learning to Rank?](https://openreview.net/pdf?id=MXfTQp8bZF)
