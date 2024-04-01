@@ -32,7 +32,7 @@ TBD
 
 ## Results
 
-#### <center>LightGBM Recommendation</center>
+#### <div align="center"> LightGBM Recommendation </div>
 
 |                       Anime Name                      |        Already Liked         | Predicted Score |
 |:------------------------------------------------------|:----------------------------:|:---------------:|
@@ -47,7 +47,7 @@ TBD
 |          Xiong Chumo Zhi: Chunri Dui Dui Peng         |         xxxHOLiC Kei         |      2.649      |
 |                   Kazoku no Hanashi                   |       Shounen Onmyouji       |      2.641      |
 
-#### <center>CatBoost Recommendation</center>
+#### <div align="center"> CatBoost Recommendation </div>
 
 |                  Anime Name                  |        Already Liked         | Predicted Score |
 |:---------------------------------------------|:----------------------------:|:---------------:|
