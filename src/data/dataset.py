@@ -8,7 +8,7 @@ from pathlib import Path
 import pandas as pd
 from omegaconf import DictConfig, OmegaConf
 
-from tools import create_genre_flags
+from generator import create_genre_flags
 
 
 def load_dataset(cfg: DictConfig) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:

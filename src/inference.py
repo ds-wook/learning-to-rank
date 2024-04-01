@@ -12,7 +12,7 @@ from prettytable import PrettyTable
 
 from data import load_dataset, load_test_dataset
 from models import BulidModel
-from tools import candidate_generation
+from generator import candidate_generation
 
 
 def generate_predictions(
