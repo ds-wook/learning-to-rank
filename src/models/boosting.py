@@ -53,8 +53,8 @@ class CatBoostTrainer(BaseModel):
     ) -> CatBoostRanker:
         train_groups = X_train.index.to_numpy()  # user_id query
         valid_groups = X_valid.index.to_numpy()  # user_id query
-        train_set = Pool(X_train, y_train, cat_features=self.cfg.tools.categorical_features, group_id=train_groups)
-        valid_set = Pool(X_valid, y_valid, cat_features=self.cfg.tools.categorical_features, group_id=valid_groups)
+        train_set = Pool(X_train, y_train, cat_features=self.cfg.generator.categorical_features, group_id=train_groups)
+        valid_set = Pool(X_valid, y_valid, cat_features=self.cfg.generator.categorical_features, group_id=valid_groups)
 
         params = OmegaConf.to_container(self.cfg.models.params)
         model = CatBoostRanker(random_state=self.cfg.models.seed, **params)
