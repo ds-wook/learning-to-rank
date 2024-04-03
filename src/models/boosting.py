@@ -57,7 +57,11 @@ class CatBoostTrainer(BaseModel):
         valid_set = Pool(X_valid, y_valid, cat_features=self.cfg.generator.categorical_features, group_id=valid_groups)
 
         params = OmegaConf.to_container(self.cfg.models.params)
-        model = CatBoostRanker(random_state=self.cfg.models.seed, **params)
+        model = CatBoostRanker(
+            random_state=self.cfg.models.seed,
+            **params,
+            custom_metric=["NDCG:top=2", "NDCG:top=3", "NDCG:top=4", "NDCG:top=5", "MAP"],
+        )
 
         model.fit(
             train_set,
@@ -65,6 +69,8 @@ class CatBoostTrainer(BaseModel):
             verbose_eval=self.cfg.models.verbose_eval,
             early_stopping_rounds=self.cfg.models.early_stopping_rounds,
         )
+
+        print(model.get_best_score()["validation"])
 
         return model
 

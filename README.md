@@ -33,33 +33,35 @@ TBD
 ## Results
 
 #### <div align="center"> LightGBM Recommendation </div>
-|                                Anime Name                                |        Already Liked         | Predicted Score |
-|:-------------------------------------------------------------------------|:----------------------------:|:---------------:|
-|                  Ougon no Hou: El Cantare no Rekishikan                  |      Majo no Takkyuubin      |      3.906      |
-|                                Connected                                 |    Tenkuu no Shiro Laputa    |      3.832      |
-|                               Yume no Kawa                               |       Pumpkin Scissors       |      3.832      |
-|                               Yuusei Kamen                               |       Omoide Poroporo        |      3.832      |
-|                  Sekai Meisaku Douwa: Mori wa Ikiteiru                   | Heisei Tanuki Gassen Ponpoko |      3.832      |
-|                           Mii-chan no Tenohira                           |       Tonari no Totoro       |      3.832      |
-|                                 Tarareba                                 |         Zetsuai 1989         |      3.805      |
-|                      Shakugan no Shana II (Second)                       |           Monster            |      3.797      |
-| Slam Dunk: Hoero Basketman-damashii! Hanamichi to Rukawa no Atsuki Natsu |         xxxHOLiC Kei         |      3.797      |
-|                                  Gift±                                   |       Shounen Onmyouji       |      3.797      |
+|               Anime Name              |        Already Liked         | Predicted Score |
+|:--------------------------------------|:----------------------------:|:---------------:|
+|           Ningen Doubutsuen           |      Majo no Takkyuubin      |      3.062      |
+|        Bakugan Battle Brawlers        |    Tenkuu no Shiro Laputa    |      2.981      |
+| Chain Chronicle: Haecceitas no Hikari |       Pumpkin Scissors       |      2.981      |
+|                Kure-nai               |       Omoide Poroporo        |      2.821      |
+|       Break Blade Picture Drama       | Heisei Tanuki Gassen Ponpoko |      2.819      |
+|            Coral no Tanken            |       Tonari no Totoro       |      2.805      |
+|                  None                 |         Zetsuai 1989         |      2.795      |
+|    Rokujouma no Shinryakusha!? (TV)   |           Monster            |      2.795      |
+|          Platonic Chain: Web          |         xxxHOLiC Kei         |      2.793      |
+|   Seikimatsu Occult Gakuin Specials   |       Shounen Onmyouji       |      2.793      |
+
 
 #### <div align="center"> CatBoost Recommendation </div>
 
-|                  Anime Name                  |        Already Liked         | Predicted Score |
-|:---------------------------------------------|:----------------------------:|:---------------:|
-|   Shaonu Qianxian: Renxing Xiao Juchang 2    |      Majo no Takkyuubin      |      4.152      |
-| Digimon Adventure: 20 Shuunen Memorial Story |    Tenkuu no Shiro Laputa    |      4.152      |
-|              Koneko no Rakugaki              |       Pumpkin Scissors       |      4.071      |
-|                Chiisana Jumbo                |       Omoide Poroporo        |      3.959      |
-|    Sam to Chip no wa Hachamecha Dai Race     | Heisei Tanuki Gassen Ponpoko |      3.798      |
-|               Ringo to Shoujo                |       Tonari no Totoro       |      3.798      |
-|                  Shake-chan                  |         Zetsuai 1989         |      3.755      |
-|                 ChäoS;Child                  |           Monster            |      3.601      |
-|               Tamagawa Kyoudai               |         xxxHOLiC Kei         |      3.599      |
-|                Inazuma Eleven                |       Shounen Onmyouji       |      3.599      |
+|                     Anime Name                    |        Already Liked         | Predicted Score |
+|:--------------------------------------------------|:----------------------------:|:---------------:|
+|                     Gad Guard                     |      Majo no Takkyuubin      |      4.797      |
+|                     Fuyu no Hi                    |    Tenkuu no Shiro Laputa    |      4.566      |
+|          Hatsukoi Limited.: Gentei Shoujo         |       Pumpkin Scissors       |      4.566      |
+|                  Slam Dunk Movie                  |       Omoide Poroporo        |      4.541      |
+|           Koukaku Kidoutai Nyuumon Arise          | Heisei Tanuki Gassen Ponpoko |      4.522      |
+| Joshiochi!: 2-kai kara Onnanoko ga... Futtekita!? |       Tonari no Totoro       |      4.266      |
+|                   Ai Yori Aoshi                   |         Zetsuai 1989         |      4.266      |
+|           Shin Mitsubachi Maya no Bouken          |           Monster            |      4.141      |
+|             Denshinbashira no Okaasan             |         xxxHOLiC Kei         |      4.141      |
+|       Schoolgirl Strikers: Animation Channel      |       Shounen Onmyouji       |      4.126      |
+
 
 ## Reference
 + [Which Tricks are Important for Learning to Rank?](https://openreview.net/pdf?id=MXfTQp8bZF)
