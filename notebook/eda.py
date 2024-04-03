@@ -57,3 +57,43 @@ anime_info_df_final = anime_info_df.merge(anime_genre_info_df, on="anime_id")
 # %%
 anime_info_df_final
 # %%
+train_interim = relavence_scores.merge(anime_info_df_final, on="anime_id")
+train = train_interim.merge(user_info, how="inner")
+
+# %%
+train.groupby("user_id").size().sum()
+# %%
+train.head()
+# %%
+train.groupby("user_id")["anime_id"].count()
+# %%
+test_size = int(1e5)
+X, y = train, train["relavence_score"].apply(lambda x: int(x * 10))
+test_idx_start = len(X) - test_size
+X_train, X_test, y_train, y_test = (
+    X.iloc[0:test_idx_start],
+    X.iloc[test_idx_start:],
+    y.iloc[0:test_idx_start],
+    y.iloc[test_idx_start:],
+)
+
+# %%
+train_groups = X_train.groupby("user_id").size().to_numpy()
+valid_groups = X_test.groupby("user_id").size().to_numpy()
+# %%
+X_train.groupby("user_id").size().max()
+# %%
+X_test.groupby("user_id").size().to_numpy()
+# %%
+(relavence_scores["user_id"] == 11100).shape
+# %%
+11100 in X_train.groupby("user_id").size().index
+# %%
+np.sort(relavence_scores["user_id"].unique())
+# %%
+relavence_scores[~(relavence_scores["user_id"] == 11100)]
+# %%
+relavence_scores[(relavence_scores["user_id"] == 11100)]
+# %%
+relavence_scores.groupby("user_id").size().sort_values(ascending=False)
+# %%

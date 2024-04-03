@@ -14,6 +14,10 @@ from generator import create_genre_flags
 def load_dataset(cfg: DictConfig) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
     path = Path(cfg.data.path)
     anime_info_df = pd.read_csv(path / "anime_info.csv")
+    anime_info_df["is_dirty"] = anime_info_df["Genres"].map(lambda x: 1 if "Hentai" in str(x) else 0)
+    anime_info_df = anime_info_df[anime_info_df["is_dirty"] == 0]
+    anime_info_df = anime_info_df.drop(columns=["is_dirty"])
+
     relavence_scores = pd.read_csv(path / "relavence_scores.csv")
     user_info = pd.read_csv(path / "user_info.csv")
     relavence_scores = relavence_scores[~(relavence_scores["user_id"] == 11100)]
@@ -21,6 +25,7 @@ def load_dataset(cfg: DictConfig) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series
     anime_genre_info_df = create_genre_flags(anime_info_df, popular_genres)
 
     anime_info_df_final = anime_info_df.merge(anime_genre_info_df, on="anime_id")
+
     anime_info_df_final = anime_info_df_final.drop(columns=["Genres"])
     anime_info_df_final.columns = [
         col if col == "anime_id" else f"ANIME_FEATURE {col}".upper() for col in anime_info_df_final.columns

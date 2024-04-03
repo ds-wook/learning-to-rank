@@ -33,19 +33,18 @@ TBD
 ## Results
 
 #### <div align="center"> LightGBM Recommendation </div>
-
-|                       Anime Name                      |        Already Liked         | Predicted Score |
-|:------------------------------------------------------|:----------------------------:|:---------------:|
-|  Pokemon Movie 02: Maboroshi no Pokemon Lugia Bakutan |      Majo no Takkyuubin      |      3.025      |
-|     Toaru Kagaku no Railgun: Motto Marutto Railgun    |    Tenkuu no Shiro Laputa    |      2.967      |
-|                    Ten made Tobaso                    |       Pumpkin Scissors       |      2.967      |
-|                       Mikan-bune                      |       Omoide Poroporo        |      2.866      |
-|             Dorami-chan: A Blue Straw Hat             | Heisei Tanuki Gassen Ponpoko |      2.828      |
-| K: Seven Stories Movie 3 - Side:Green - Uwagaki Sekai |       Tonari no Totoro       |      2.771      |
-|        Kawasaki Frontale x Tentai Senshi Sunred       |         Zetsuai 1989         |      2.729      |
-|                      X²: Double X                     |           Monster            |      2.729      |
-|          Xiong Chumo Zhi: Chunri Dui Dui Peng         |         xxxHOLiC Kei         |      2.649      |
-|                   Kazoku no Hanashi                   |       Shounen Onmyouji       |      2.641      |
+|                                Anime Name                                |        Already Liked         | Predicted Score |
+|:-------------------------------------------------------------------------|:----------------------------:|:---------------:|
+|                  Ougon no Hou: El Cantare no Rekishikan                  |      Majo no Takkyuubin      |      3.906      |
+|                                Connected                                 |    Tenkuu no Shiro Laputa    |      3.832      |
+|                               Yume no Kawa                               |       Pumpkin Scissors       |      3.832      |
+|                               Yuusei Kamen                               |       Omoide Poroporo        |      3.832      |
+|                  Sekai Meisaku Douwa: Mori wa Ikiteiru                   | Heisei Tanuki Gassen Ponpoko |      3.832      |
+|                           Mii-chan no Tenohira                           |       Tonari no Totoro       |      3.832      |
+|                                 Tarareba                                 |         Zetsuai 1989         |      3.805      |
+|                      Shakugan no Shana II (Second)                       |           Monster            |      3.797      |
+| Slam Dunk: Hoero Basketman-damashii! Hanamichi to Rukawa no Atsuki Natsu |         xxxHOLiC Kei         |      3.797      |
+|                                  Gift±                                   |       Shounen Onmyouji       |      3.797      |
 
 #### <div align="center"> CatBoost Recommendation </div>
 
