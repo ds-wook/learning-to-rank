@@ -25,9 +25,9 @@ $ sh scripts/run.sh
 ![image](https://github.com/ds-wook/learning-to-rank/assets/46340424/2ff9bbb4-4b21-4c00-87ad-47d140426dc7)
 
 
-
 ## Benchmark
-TBD
+![논문세미나4](https://github.com/ds-wook/learning-to-rank/assets/46340424/acc80bf8-62cd-4b10-b2a9-ed27a843e254)
+
 
 
 ## Results
