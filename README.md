@@ -26,8 +26,7 @@ $ sh scripts/run.sh
 
 
 ## Benchmark
-![논문세미나4](https://github.com/ds-wook/learning-to-rank/assets/46340424/acc80bf8-62cd-4b10-b2a9-ed27a843e254)
-
+![논문세미나4](https://github.com/ds-wook/learning-to-rank/assets/46340424/dbb3b884-0dec-4c00-a7c1-0aecfd0b26a0)
 
 
 ## Results
