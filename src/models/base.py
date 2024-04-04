@@ -58,8 +58,8 @@ class BaseModel(ABC):
         models = {}
         kfold = KFold(n_splits=self.cfg.data.n_splits, shuffle=True, random_state=self.cfg.data.seed)
 
-        with tqdm(kfold, unit="KFold Training", desc="Inference", leave=False) as tqdm_kfold:
-            for fold, (train_idx, valid_idx) in enumerate(tqdm_kfold.split(X=X), 1):
+        with tqdm(kfold.split(X), total=self.cfg.data.n_splits, desc="cv", leave=False) as pbar:
+            for fold, (train_idx, valid_idx) in enumerate(pbar, 1):
                 X_train, X_valid = X.iloc[train_idx], X.iloc[valid_idx]
                 y_train, y_valid = y.iloc[train_idx], y.iloc[valid_idx]
 
