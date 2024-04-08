@@ -4,7 +4,6 @@ import gc
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
 
 import joblib
 import lightgbm as lgb
@@ -17,11 +16,13 @@ from sklearn.model_selection import KFold
 from tqdm import tqdm
 from typing_extensions import Self
 
+from models import BulidModel
+
 
 @dataclass
 class ModelResult:
     oof_preds: np.ndarray
-    models: dict[str, Any]
+    models: dict[str, BulidModel]
 
 
 class BaseModel(ABC):
