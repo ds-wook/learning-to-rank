@@ -29,6 +29,7 @@ params:
   iterations: 20000
   allow_writing_files: False
 ```
+
 Running the learning code shell allows learning
 ```sh
 $ sh scripts/run.sh

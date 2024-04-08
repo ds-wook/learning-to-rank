@@ -13,7 +13,6 @@ import pandas as pd
 import xgboost as xgb
 from omegaconf import DictConfig
 from pytorch_tabnet.tab_model import TabNetRegressor
-from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import KFold
 from tqdm import tqdm
 from typing_extensions import Self
@@ -81,7 +80,5 @@ class BaseModel(ABC):
 
         del X_train, X_valid, y_train, y_valid
         gc.collect()
-
-        print(f"CV Score: {mean_absolute_error(y, oof_preds):.6f}")
 
         self.result = ModelResult(oof_preds=oof_preds, models=models)
