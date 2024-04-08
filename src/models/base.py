@@ -16,13 +16,13 @@ from sklearn.model_selection import KFold
 from tqdm import tqdm
 from typing_extensions import Self
 
-from models import BulidModel
+from models import TreeModel
 
 
 @dataclass
 class ModelResult:
     oof_preds: np.ndarray
-    models: dict[str, BulidModel]
+    models: dict[str, TreeModel]
 
 
 class BaseModel(ABC):
@@ -48,7 +48,7 @@ class BaseModel(ABC):
         y_train: pd.Series | np.ndarray,
         X_valid: pd.DataFrame | np.ndarray | None = None,
         y_valid: pd.Series | np.ndarray | None = None,
-    ) -> Any:
+    ) -> TreeModel:
         model = self._fit(X_train, y_train, X_valid, y_valid)
 
         return model

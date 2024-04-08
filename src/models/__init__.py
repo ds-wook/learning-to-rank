@@ -1,9 +1,21 @@
+from dataclasses import dataclass
+
+import catboost as cb
+import lightgbm as lgb
+import xgboost as xgb
 from omegaconf import DictConfig
 
 from .base import BaseModel
 from .boosting import CatBoostTrainer, LightGBMTrainer, XGBoostTrainer
 
 BulidModel = CatBoostTrainer | LightGBMTrainer | XGBoostTrainer
+
+
+@dataclass
+class TreeModel:
+    lightgbm: lgb.Booster
+    xgboost: xgb.Booster
+    catboost: cb.CatBoost
 
 
 def bulid_model(cfg: DictConfig) -> BulidModel:
