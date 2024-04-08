@@ -15,6 +15,20 @@ $ conda env create --file environment.yaml
 ```
 
 ## Run code
+CatBoost parameter Setting
+```yaml
+params:
+  task_type: CPU
+  loss_function: StochasticRank:metric=NDCG
+  eval_metric: NDCG
+  learning_rate: 0.05
+  l2_leaf_reg: 0.02
+  bagging_temperature: 3
+  min_data_in_leaf: 57
+  od_type: Iter
+  iterations: 20000
+  allow_writing_files: False
+```
 Running the learning code shell allows learning
 ```sh
 $ sh scripts/run.sh
