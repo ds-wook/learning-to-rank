@@ -53,7 +53,7 @@ class BaseModel(ABC):
 
         return model
 
-    def run_cv_training(self: Self, X: pd.DataFrame, y: pd.Series) -> None:
+    def run_cv_training(self: Self, X: pd.DataFrame, y: pd.Series) -> Self:
         oof_preds = np.zeros(X.shape[0])
         models = {}
         kfold = KFold(n_splits=self.cfg.data.n_splits, shuffle=True, random_state=self.cfg.data.seed)
@@ -83,3 +83,5 @@ class BaseModel(ABC):
         gc.collect()
 
         self.result = ModelResult(oof_preds=oof_preds, models=models)
+
+        return self
