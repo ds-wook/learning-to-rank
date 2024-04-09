@@ -35,11 +35,6 @@ Running the learning code shell allows learning
 $ sh scripts/run.sh
 ```
 
-
-## Learning to Rank
-![image](https://github.com/ds-wook/learning-to-rank/assets/46340424/2ff9bbb4-4b21-4c00-87ad-47d140426dc7)
-
-
 ## Benchmark
 ![result](https://github.com/ds-wook/learning-to-rank/assets/46340424/9313523d-46e2-404c-99f7-f3e92bc2eae6)
 
