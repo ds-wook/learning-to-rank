@@ -79,7 +79,7 @@ $ sh scripts/run.sh
 
 
 ## What not worked
-+ Stochastic Rank is not work because training time is very long.
++ Stochastic Rank method took a lot of training time.
 
 
 ## Reference
