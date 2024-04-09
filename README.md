@@ -41,7 +41,7 @@ $ sh scripts/run.sh
 
 
 ## Benchmark
-![논문세미나4](https://github.com/ds-wook/learning-to-rank/assets/46340424/dbb3b884-0dec-4c00-a7c1-0aecfd0b26a0)
+![result](https://github.com/ds-wook/learning-to-rank/assets/46340424/9313523d-46e2-404c-99f7-f3e92bc2eae6)
 
 
 ## Results
@@ -75,6 +75,11 @@ $ sh scripts/run.sh
 |           Shin Mitsubachi Maya no Bouken          |           Monster            |      4.141      |
 |             Denshinbashira no Okaasan             |         xxxHOLiC Kei         |      4.141      |
 |       Schoolgirl Strikers: Animation Channel      |       Shounen Onmyouji       |      4.126      |
+
+
+
+## What not worked
++ Stochastic Rank is not work because training time is very long.
 
 
 ## Reference

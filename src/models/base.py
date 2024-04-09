@@ -5,6 +5,7 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from pathlib import Path
 
+import catboost as cb
 import joblib
 import lightgbm as lgb
 import numpy as np
@@ -16,7 +17,7 @@ from sklearn.model_selection import KFold
 from tqdm import tqdm
 from typing_extensions import Self
 
-from models import TreeModel
+TreeModel = cb.CatBoost | lgb.Booster | xgb.Booster
 
 
 @dataclass
