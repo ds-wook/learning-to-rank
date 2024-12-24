@@ -74,13 +74,12 @@ $ sh scripts/run.sh
 ```
 
 ## Benchmark
-![result](https://github.com/ds-wook/learning-to-rank/assets/46340424/9313523d-46e2-404c-99f7-f3e92bc2eae6)
 
 |Algorithm|NDCG@20|NDCG@50|NDCG@100|
 |:--------|:-----:|:-----:|:------:|
-|LightGBM - LambdaMart|0.007884|0.00932|0.009782|
-|LightGBM - XenDCG|0.007884|0.00932|0.009782|
-
+|LightGBM - LambdaMart|0.00788|0.00932|0.009782|
+|LightGBM - XenDCG|0.00987|0.01113|0.01108|
+|CatBoost - YetiRank|**0.01281**|**0.01159**|**0.01121**|
 
 ## Results
 

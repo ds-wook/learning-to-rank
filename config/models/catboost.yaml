@@ -5,7 +5,7 @@ results: catboost_stochastic_ranker
 
 params:
   task_type: CPU
-  loss_function: YetiRankPairwise
+  loss_function: YetiRank
   eval_metric: NDCG
   learning_rate: 0.05
   l2_leaf_reg: 0.02
