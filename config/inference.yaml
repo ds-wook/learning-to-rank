@@ -18,4 +18,4 @@ defaults:
 
 model_path: res/models/
 results: lightgbm_ranker
-N: 10
+top_k: 100

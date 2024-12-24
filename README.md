@@ -7,11 +7,49 @@ The code style has been configured to use Black, and the maximum line length has
 I used [Anime Recommendation LTR](https://www.kaggle.com/datasets/ransakaravihara/anime-recommendation-ltr-dataset) in the Kaggle dataset.
 
 ## Requirements
-By default, hydra-core==1.3.0 was added to the requirements given by the competition. For pytorch, refer to the link at https://pytorch.org/get-started/previous-versions/ and reinstall it with the right version of pytorch for your environment.
 
-You can install a library where you can run the file by typing:
+We use [poetry](https://github.com/python-poetry/poetry) to manage dependencies of repository.
+
+It is recommended that latest version of poetry should be installed in advance.
+
 ```sh
-$ conda env create --file environment.yaml
+$ poetry --version
+Poetry (version 1.8.5)
+```
+
+Python version should be higher than `3.11`.
+
+```sh
+$ python --version
+Python 3.11.11
+```
+
+If python version is lower than `3.11`, try installing required version using `pyenv`.
+
+Create virtual environment.
+
+```sh
+$ poetry shell
+```
+
+After setting up python version, just run following command which will install all the required packages from `poetry.lock`.
+
+```sh
+$ poetry install
+```
+
+### Note
+
+If you want to add package to `pyproject.toml`, please use following command.
+
+```sh
+$ poetry add "package==1.0.0"
+```
+
+Then, update `poetry.lock` to ensure that repository members share same environment setting.
+
+```sh
+$ poetry lock
 ```
 
 ## Run code
@@ -37,6 +75,11 @@ $ sh scripts/run.sh
 
 ## Benchmark
 ![result](https://github.com/ds-wook/learning-to-rank/assets/46340424/9313523d-46e2-404c-99f7-f3e92bc2eae6)
+
+|Algorithm|NDCG@20|NDCG@50|NDCG@100|
+|:--------|:-----:|:-----:|:------:|
+|LightGBM - LambdaMart|0.007884|0.00932|0.009782|
+|LightGBM - XenDCG|0.007884|0.00932|0.009782|
 
 
 ## Results

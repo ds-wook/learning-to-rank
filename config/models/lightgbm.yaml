@@ -4,7 +4,7 @@ model_path: res/models/
 results: lightgbm_ranker
 
 params:
-  objective: lambdarank
+  objective: xendcg
   boosting_type: gbdt
   metric: ndcg
   learning_rate: 0.01

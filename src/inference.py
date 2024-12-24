@@ -9,10 +9,12 @@ import pandas as pd
 from catboost import CatBoostRanker
 from omegaconf import DictConfig
 from prettytable import PrettyTable
+from tqdm import tqdm
 
 from data import load_dataset, load_test_dataset
-from models import BulidModel
+from evaluation import ndcg_at_k
 from generator import candidate_generation
+from models import BulidModel
 
 
 def generate_predictions(
@@ -23,7 +25,7 @@ def generate_predictions(
     feature_columns: list[str],
     anime_id_2_name_map: dict[int, list[str]],
     ranker: BulidModel,
-    N: int = 100,
+    top_k: int = 100,
 ) -> pd.DataFrame:
     anime_info_df_final, _, user_info = load_dataset(cfg)
     already_liked, candidates = candidate_generation(user_id, candidate_pool, user_2_anime_map, N=10000)
@@ -40,11 +42,9 @@ def generate_predictions(
     predictions = pd.DataFrame(index=candidates)
     predictions["name"] = np.array([anime_id_2_name_map.get(id_) for id_ in candidates])
     predictions["score"] = ranker.predict(features[feature_columns])
-    predictions = predictions.sort_values(by="score", ascending=False).head(N)
+    predictions = predictions.sort_values(by="score", ascending=False).head(top_k)
 
-    predictions[f"already_liked - sample[{N}]"] = [
-        anime_id_2_name_map.get(_id) for _id in already_liked[0 : len(predictions)]
-    ]
+    predictions["already_liked"] = [anime_id_2_name_map.get(_id) for _id in already_liked[:top_k]]
     return predictions
 
 
@@ -58,22 +58,34 @@ def _main(cfg: DictConfig):
         else CatBoostRanker().load_model(Path(cfg.models.model_path) / f"{cfg.models.results}.model")
     )
 
-    predictions = generate_predictions(
-        cfg=cfg,
-        user_id=123,
-        user_2_anime_map=user_2_anime_map,
-        candidate_pool=candidate_pool,
-        feature_columns=cfg.data.features,
-        anime_id_2_name_map=anime_id_2_name_map,
-        ranker=ranker,
-        N=cfg.N,
-    )
+    user_ids = list(user_2_anime_map.keys())
+    already_likes = []
+    names = []
 
+    for user_id in tqdm(user_ids[: cfg.top_k]):
+        predictions = generate_predictions(
+            cfg=cfg,
+            user_id=user_id,
+            user_2_anime_map=user_2_anime_map,
+            candidate_pool=candidate_pool,
+            feature_columns=cfg.data.features,
+            anime_id_2_name_map=anime_id_2_name_map,
+            ranker=ranker,
+        )
+        already_likes.append(predictions["already_liked"].to_numpy())
+        names.append(predictions["name"].tolist())
+
+    output = pd.DataFrame({"user": user_ids[: cfg.top_k], "already_liked": already_likes, "name": names})
+
+    # calculate NDCG@K
     table = PrettyTable()
-    table.field_names = ["Anime Name", "Already Liked", "Predicted Score"]
+    table.field_names = ["K", "NDCG@K"]
+    top_k = [20, 50, 100, 200]
+    already_liked = output["already_liked"].to_numpy()
+    predicted_scores = output["name"].to_numpy()
 
-    for _, row in predictions.iterrows():
-        table.add_row([row["name"], row[f"already_liked - sample[{cfg.N}]"], f"{row['score']:.3f}"])
+    for k in top_k:
+        table.add_row([k, ndcg_at_k(already_liked, predicted_scores, k)])
 
     print(table)
 

@@ -12,7 +12,6 @@ import numpy as np
 import pandas as pd
 import xgboost as xgb
 from omegaconf import DictConfig
-from pytorch_tabnet.tab_model import TabNetRegressor
 from sklearn.model_selection import KFold
 from tqdm import tqdm
 from typing_extensions import Self
@@ -71,11 +70,7 @@ class BaseModel(ABC):
                     else (
                         model.predict(xgb.DMatrix(X_valid))
                         if isinstance(model, xgb.Booster)
-                        else (
-                            model.predict(X_valid.to_numpy()).reshape(-1)
-                            if isinstance(model, TabNetRegressor)
-                            else model.predict(X_valid)
-                        )
+                        else model.predict(X_valid)
                     )
                 )
                 models[f"fold_{fold}"] = model
