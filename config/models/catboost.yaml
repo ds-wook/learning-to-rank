@@ -1,11 +1,11 @@
 name: catboost
 
 model_path: res/models/
-results: catboost_stochastic_ranker
+results: catboost_lambdamart
 
 params:
   task_type: CPU
-  loss_function: YetiRank
+  loss_function: LambdaMart
   eval_metric: NDCG
   learning_rate: 0.05
   l2_leaf_reg: 0.02
@@ -17,4 +17,4 @@ params:
 
 early_stopping_rounds: 100
 seed: 42
-verbose_eval: 250
+verbose_eval: 100
