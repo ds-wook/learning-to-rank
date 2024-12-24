@@ -44,10 +44,10 @@ class BaseModel(ABC):
 
     def fit(
         self: Self,
-        X_train: pd.DataFrame | np.ndarray,
-        y_train: pd.Series | np.ndarray,
-        X_valid: pd.DataFrame | np.ndarray | None = None,
-        y_valid: pd.Series | np.ndarray | None = None,
+        X_train: pd.DataFrame,
+        y_train: pd.Series,
+        X_valid: pd.DataFrame | None = None,
+        y_valid: pd.Series | None = None,
     ) -> TreeModel:
         model = self._fit(X_train, y_train, X_valid, y_valid)
 
