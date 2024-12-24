@@ -122,3 +122,35 @@ $ sh scripts/run.sh
 ## Reference
 + [Which Tricks are Important for Learning to Rank?](https://openreview.net/pdf?id=MXfTQp8bZF)
 + [ARE NEURAL RANKERS STILL OUTPERFORMED BY GRADIENT BOOSTED DECISION TREES?](https://openreview.net/pdf?id=Ut1vF_q_vC)
+
+## Lint setting
+I use ``ruff``
+``sh
+poetry add --group dev ruff pre-commit
+``
+Pre-commit settings can only be configured in the `.pre-commit-config.yaml` file.
+
+Create the `.pre-commit-config.yaml` file and add the following code:
+```
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+-   repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: v0.0.272
+    hooks:
+    -   id: ruff
+        args: ["--fix"]
+-   repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+    -   id: black
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.3.0
+    hooks:
+    -   id: mypy
+        args: [--ignore-missing-imports]
+```
