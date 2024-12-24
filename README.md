@@ -124,33 +124,38 @@ $ sh scripts/run.sh
 + [ARE NEURAL RANKERS STILL OUTPERFORMED BY GRADIENT BOOSTED DECISION TREES?](https://openreview.net/pdf?id=Ut1vF_q_vC)
 
 ## Lint setting
-I use ``ruff``
-``sh
-poetry add --group dev ruff pre-commit
-``
-Pre-commit settings can only be configured in the `.pre-commit-config.yaml` file.
+We use `ruff` for linting and code quality checks. Ruff is a fast Python linter, written in Rust, that integrates well with pre-commit hooks. It helps in maintaining code quality by enforcing coding standards and catching potential issues early in the development process.
 
-Create the `.pre-commit-config.yaml` file and add the following code:
+To add `ruff` to your development dependencies, run the following command:
+
+```sh
+poetry add --group dev ruff pre-commit
 ```
+
+Pre-commit settings can be configured in the `.pre-commit-config.yaml` file. Create the `.pre-commit-config.yaml` file and add the following configuration:
+
+```yaml
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
-    hooks:
-    -   id: trailing-whitespace
-    -   id: end-of-file-fixer
-    -   id: check-yaml
+  rev: v4.4.0
+  hooks:
+  -   id: trailing-whitespace
+  -   id: end-of-file-fixer
+  -   id: check-yaml
 -   repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.272
-    hooks:
-    -   id: ruff
-        args: ["--fix"]
+  rev: v0.0.272
+  hooks:
+  -   id: ruff
+    args: ["--fix"]
 -   repo: https://github.com/psf/black
-    rev: 23.3.0
-    hooks:
-    -   id: black
+  rev: 23.3.0
+  hooks:
+  -   id: black
 -   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.3.0
-    hooks:
-    -   id: mypy
-        args: [--ignore-missing-imports]
+  rev: v1.3.0
+  hooks:
+  -   id: mypy
+    args: [--ignore-missing-imports]
 ```
+
+This configuration ensures that `ruff` is used to automatically fix linting issues, along with other useful hooks for maintaining code quality.
