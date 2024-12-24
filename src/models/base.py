@@ -4,6 +4,7 @@ import gc
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Self
 
 import catboost as cb
 import joblib
@@ -14,7 +15,6 @@ import xgboost as xgb
 from omegaconf import DictConfig
 from sklearn.model_selection import KFold
 from tqdm import tqdm
-from typing_extensions import Self
 
 TreeModel = cb.CatBoost | lgb.Booster | xgb.Booster
 
@@ -32,10 +32,10 @@ class BaseModel(ABC):
     @abstractmethod
     def _fit(
         self: Self,
-        X_train: pd.DataFrame | np.ndarray,
-        y_train: pd.Series | np.ndarray,
-        X_valid: pd.DataFrame | np.ndarray | None = None,
-        y_valid: pd.Series | np.ndarray | None = None,
+        X_train: pd.DataFrame,
+        y_train: pd.Series,
+        X_valid: pd.DataFrame | None = None,
+        y_valid: pd.Series | None = None,
     ):
         raise NotImplementedError
 

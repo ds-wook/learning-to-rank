@@ -1,12 +1,13 @@
 from __future__ import annotations
 
+from typing import Self
+
 import lightgbm as lgb
 import numpy as np
 import pandas as pd
 import xgboost as xgb
 from catboost import CatBoostRanker, Pool
 from omegaconf import DictConfig, OmegaConf
-from typing_extensions import Self
 
 from models import BaseModel
 
