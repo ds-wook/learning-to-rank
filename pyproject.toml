@@ -42,19 +42,3 @@ lint.select = ["I", "E", "F", "W", "C90", "UP"]
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.black]
-line-length = 120
-target-version = ['py36', 'py37', 'py38']
-exclude = '''
-    \.git
-  | \.mypy_cache
-  | \.tox
-  | venv
-  | \.venv
-  | _build
-  | buck-out
-  | build
-  | dist
-  | ^.*\b(migrations)\b.*$
-'''
