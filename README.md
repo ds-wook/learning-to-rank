@@ -79,7 +79,8 @@ $ sh scripts/run.sh
 |:--------|:-----:|:-----:|:------:|
 |LightGBM - LambdaMart|0.00788|0.00932|0.009782|
 |LightGBM - XenDCG|0.00987|0.01113|0.01108|
-|CatBoost - YetiRank|**0.01281**|**0.01159**|**0.01121**|
+|CatBoost - YetiRank|**0.01281**|0.01159|0.01121|
+|CatBoost - LambdaMart|0.01196|**0.012353**|**0.01196**|
 
 ## Results
 

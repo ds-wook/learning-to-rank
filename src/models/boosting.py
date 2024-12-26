@@ -63,6 +63,7 @@ class CatBoostTrainer(BaseModel):
         params_container = OmegaConf.to_container(self.cfg.models.params)
         if not isinstance(params_container, dict):
             raise TypeError("Expected params to be a dictionary")
+
         params = {str(k): v for k, v in params_container.items()}
         params["random_seed"] = self.cfg.models.seed
 
