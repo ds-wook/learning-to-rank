@@ -6,7 +6,8 @@ test: test
 submit: submission
 n_splits: 5
 seed: 42
-target: relavence_score
+target: target
+negative_sampling_ratio: 0.1
 popular_genres:
   - Comedy
   - Action

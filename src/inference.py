@@ -11,9 +11,8 @@ from omegaconf import DictConfig
 from prettytable import PrettyTable
 from tqdm import tqdm
 
-from data import load_dataset, load_test_dataset
+from data import candidate_generation, load_dataset, load_test_dataset
 from evaluation import ndcg_at_k
-from generator import candidate_generation
 from models import BulidModel
 
 
