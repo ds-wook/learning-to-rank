@@ -1291,7 +1291,10 @@ files = [
 ]
 
 [package.dependencies]
-numpy = {version = ">=1.23.2", markers = "python_version == \"3.11\""}
+numpy = [
+    {version = ">=1.23.2", markers = "python_version == \"3.11\""},
+    {version = ">=1.26.0", markers = "python_version >= \"3.12\""},
+]
 python-dateutil = ">=2.8.2"
 pytz = ">=2020.1"
 tzdata = ">=2022.7"
@@ -2229,6 +2232,7 @@ files = [
     {file = "typing_extensions-4.12.2-py3-none-any.whl", hash = "sha256:04e5ca0351e0f3f85c6853954072df659d0d13fac324d0072316b67d7794700d"},
     {file = "typing_extensions-4.12.2.tar.gz", hash = "sha256:1a7ead55c7e559dd4dee8856e3a88b41225abfe1ce8df57b7c13915fe121ffb8"},
 ]
+markers = {main = "python_version == \"3.11\""}
 
 [[package]]
 name = "tzdata"
@@ -2307,5 +2311,5 @@ scikit-learn = ["scikit-learn"]
 
 [metadata]
 lock-version = "2.1"
-python-versions = "3.11"
-content-hash = "4dbe486ef3d1ee451f7a9b30b578f3cf0c8e54fd40b12b97ae65e99df703efc6"
+python-versions = "^3.11"
+content-hash = "3b6fd083e936638d8858ad34eb6839f94b17857d675410e03012d0d7dbab3019"
