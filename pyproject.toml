@@ -22,6 +22,7 @@ matplotlib = "3.9.2"
 implicit = "0.7.2"
 flake8-pyproject = ">=1.2.3"
 catboost = "^1.2.7"
+pytest = "^8.3.5"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.8.4"
