@@ -31,7 +31,9 @@ def reduce_mem_usage(df: pd.DataFrame, verbose: bool = True) -> pd.DataFrame:
     end_mem = df.memory_usage().sum() / 1024**2
 
     if verbose:
-        print(f"Mem. usage decreased to {end_mem:5.2f} Mb ({100 * (start_mem - end_mem) / start_mem:.1f}% reduction)")
+        print(
+            f"Mem. usage decreased to {end_mem:5.2f} Mb ({100 * (start_mem - end_mem) / start_mem:.1f}% reduction)"
+        )
 
     return df
 

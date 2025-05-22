@@ -56,9 +56,15 @@ class BaseModel(ABC):
     def run_cv_training(self: Self, X: pd.DataFrame, y: pd.Series) -> Self:
         oof_preds = np.zeros(X.shape[0])
         models = {}
-        kfold = KFold(n_splits=self.cfg.data.n_splits, shuffle=True, random_state=self.cfg.data.seed)
+        kfold = KFold(
+            n_splits=self.cfg.data.n_splits,
+            shuffle=True,
+            random_state=self.cfg.data.seed,
+        )
 
-        with tqdm(kfold.split(X), total=self.cfg.data.n_splits, desc="cv", leave=False) as pbar:
+        with tqdm(
+            kfold.split(X), total=self.cfg.data.n_splits, desc="cv", leave=False
+        ) as pbar:
             for fold, (train_idx, valid_idx) in enumerate(pbar, 1):
                 X_train, X_valid = X.iloc[train_idx], X.iloc[valid_idx]
                 y_train, y_valid = y.iloc[train_idx], y.iloc[valid_idx]
