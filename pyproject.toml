@@ -30,7 +30,7 @@ pre-commit = "^4.0.1"
 mypy = "^1.14.0"
 
 [tool.ruff]
-line-length = 120
+line-length = 88
 exclude = [
     ".git",
     "__pycache__",

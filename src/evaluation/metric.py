@@ -53,7 +53,9 @@ def ndcg_at_k(actual: Iterable, predicted: Iterable, k: int = 12) -> float:
     float
         Mean NDCG@K.
     """
-    return np.mean([_ndcg_at_k(a, p, k) for a, p in zip(actual, predicted) if a is not None])
+    return np.mean(
+        [_ndcg_at_k(a, p, k) for a, p in zip(actual, predicted) if a is not None]
+    )
 
 
 def _hit_at_k(actual: list[int], predicted: list[int], k: int = 10) -> float:
@@ -82,7 +84,9 @@ def hit_at_k(actual: Iterable, predicted: Iterable, k: int = 10) -> float:
     float
         Mean Hit@K.
     """
-    return np.mean([_hit_at_k(a, p, k) for a, p in zip(actual, predicted) if a is not None])
+    return np.mean(
+        [_hit_at_k(a, p, k) for a, p in zip(actual, predicted) if a is not None]
+    )
 
 
 def _recall_at_k(actual: list[int], predicted: list[int], k: int = 10) -> float:
@@ -115,4 +119,6 @@ def recall_at_k(actual: Iterable, predicted: Iterable, k: int = 10) -> float:
     float
         Mean Recall@K.
     """
-    return np.mean([_recall_at_k(a, p, k) for a, p in zip(actual, predicted) if a is not None])
+    return np.mean(
+        [_recall_at_k(a, p, k) for a, p in zip(actual, predicted) if a is not None]
+    )

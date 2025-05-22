@@ -57,8 +57,18 @@ class CatBoostTrainer(BaseModel):
     ) -> CatBoostRanker:
         train_groups = X_train.index.to_numpy()
         valid_groups = X_valid.index.to_numpy() if X_valid is not None else None
-        train_set = Pool(X_train, y_train, cat_features=self.cfg.generator.categorical_features, group_id=train_groups)
-        valid_set = Pool(X_valid, y_valid, cat_features=self.cfg.generator.categorical_features, group_id=valid_groups)
+        train_set = Pool(
+            X_train,
+            y_train,
+            cat_features=self.cfg.generator.categorical_features,
+            group_id=train_groups,
+        )
+        valid_set = Pool(
+            X_valid,
+            y_valid,
+            cat_features=self.cfg.generator.categorical_features,
+            group_id=valid_groups,
+        )
 
         params_container = OmegaConf.to_container(self.cfg.models.params)
         if not isinstance(params_container, dict):
@@ -102,13 +112,25 @@ class LightGBMTrainer(BaseModel):
 
         params["seed"] = self.cfg.models.seed
         train_groups = X_train.groupby("user_id").size().to_numpy()
-        valid_groups = X_valid.groupby("user_id").size().to_numpy() if X_valid is not None else None
+        valid_groups = (
+            X_valid.groupby("user_id").size().to_numpy()
+            if X_valid is not None
+            else None
+        )
 
         train_set = lgb.Dataset(
-            X_train, y_train, params=params, group=train_groups, feature_name=self.cfg.data.features
+            X_train,
+            y_train,
+            params=params,
+            group=train_groups,
+            feature_name=self.cfg.data.features,
         )
         valid_set = lgb.Dataset(
-            X_valid, y_valid, params=params, group=valid_groups, feature_name=self.cfg.data.features
+            X_valid,
+            y_valid,
+            params=params,
+            group=valid_groups,
+            feature_name=self.cfg.data.features,
         )
 
         model = lgb.train(

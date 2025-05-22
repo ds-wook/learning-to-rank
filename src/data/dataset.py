@@ -50,10 +50,17 @@ def negative_sampling(cfg: DictConfig, df: pd.DataFrame) -> pd.DataFrame:
         available_probs = available_probs / available_probs.sum()
 
         # Sample negative anime
-        sampled_anime = np.random.choice(available_anime, size=n_samples, p=available_probs, replace=False)
+        sampled_anime = np.random.choice(
+            available_anime, size=n_samples, p=available_probs, replace=False
+        )
 
         # Create negative samples
-        neg_samples.extend([{"user_id": user_id, "anime_id": anime_id, "target": 0} for anime_id in sampled_anime])
+        neg_samples.extend(
+            [
+                {"user_id": user_id, "anime_id": anime_id, "target": 0}
+                for anime_id in sampled_anime
+            ]
+        )
 
     # Convert to DataFrame and combine with original data
     neg_df = pd.DataFrame(neg_samples)
@@ -62,7 +69,9 @@ def negative_sampling(cfg: DictConfig, df: pd.DataFrame) -> pd.DataFrame:
     return all_data
 
 
-def limit_samples_per_user(cfg: DictConfig, df: pd.DataFrame, limit: int = 10000) -> pd.DataFrame:
+def limit_samples_per_user(
+    cfg: DictConfig, df: pd.DataFrame, limit: int = 10000
+) -> pd.DataFrame:
     """
     Limit total samples per user to 10000 (including both positive and negative)
     Prioritize positive samples
@@ -90,7 +99,9 @@ def limit_samples_per_user(cfg: DictConfig, df: pd.DataFrame, limit: int = 10000
             else:
                 # Otherwise, keep all positive samples and sample from negative
                 n_neg_samples = limit - len(pos_data)
-                sampled_neg = neg_data.sample(n=n_neg_samples, random_state=cfg.data.seed)
+                sampled_neg = neg_data.sample(
+                    n=n_neg_samples, random_state=cfg.data.seed
+                )
                 sampled_data = pd.concat([pos_data, sampled_neg], ignore_index=True)
 
             limited_data.append(sampled_data)
@@ -102,10 +113,14 @@ def limit_samples_per_user(cfg: DictConfig, df: pd.DataFrame, limit: int = 10000
     return df
 
 
-def load_dataset(cfg: DictConfig) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
+def load_dataset(
+    cfg: DictConfig,
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
     path = Path(cfg.data.path)
     anime_info_df = pd.read_csv(path / "anime_info.csv")
-    anime_info_df["is_dirty"] = anime_info_df["Genres"].map(lambda x: 1 if "Hentai" in str(x) else 0)
+    anime_info_df["is_dirty"] = anime_info_df["Genres"].map(
+        lambda x: 1 if "Hentai" in str(x) else 0
+    )
     anime_info_df = anime_info_df[anime_info_df["is_dirty"] == 0]
     anime_info_df = anime_info_df.drop(columns=["is_dirty"])
 
@@ -114,7 +129,9 @@ def load_dataset(cfg: DictConfig) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series
 
     # Filter out problematic users
     problematic_users = [10255]  # Add more user_ids if needed
-    relavence_scores = relavence_scores[~relavence_scores["user_id"].isin(problematic_users)]
+    relavence_scores = relavence_scores[
+        ~relavence_scores["user_id"].isin(problematic_users)
+    ]
     user_info = user_info[~user_info["user_id"].isin(problematic_users)]
 
     popular_genres = OmegaConf.to_container(cfg.data.popular_genres)
@@ -124,9 +141,13 @@ def load_dataset(cfg: DictConfig) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series
 
     anime_info_df_final = anime_info_df_final.drop(columns=["Genres"])
     anime_info_df_final.columns = [
-        col if col == "anime_id" else f"ANIME_FEATURE {col}".upper() for col in anime_info_df_final.columns
+        col if col == "anime_id" else f"ANIME_FEATURE {col}".upper()
+        for col in anime_info_df_final.columns
     ]
-    user_info.columns = [col if col == "user_id" else f"USER_FEATURE {col}".upper() for col in user_info.columns]
+    user_info.columns = [
+        col if col == "user_id" else f"USER_FEATURE {col}".upper()
+        for col in user_info.columns
+    ]
 
     return anime_info_df_final, relavence_scores, user_info
 
@@ -170,12 +191,20 @@ def load_train_dataset(cfg: DictConfig) -> pd.DataFrame:
     return X_train, X_valid, y_train, y_valid
 
 
-def load_test_dataset(cfg: DictConfig) -> tuple[dict[int, list[str]], list[str], dict[int, list[str]]]:
+def load_test_dataset(
+    cfg: DictConfig,
+) -> tuple[dict[int, list[str]], list[str], dict[int, list[str]]]:
     anime_info_df_final, relavence_scores, _ = load_dataset(cfg)
-    user_2_anime_df = relavence_scores.groupby("user_id").agg({"anime_id": lambda x: list(set(x))})
+    user_2_anime_df = relavence_scores.groupby("user_id").agg(
+        {"anime_id": lambda x: list(set(x))}
+    )
     user_2_anime_map = dict(zip(user_2_anime_df.index, user_2_anime_df["anime_id"]))
     candidate_pool = anime_info_df_final["anime_id"].unique().tolist()
-    anime_id_2_name = relavence_scores.drop_duplicates(subset=["anime_id", "Name"])[["anime_id", "Name"]]
-    anime_id_2_name_map = dict(zip(anime_id_2_name["anime_id"], anime_id_2_name["Name"]))
+    anime_id_2_name = relavence_scores.drop_duplicates(subset=["anime_id", "Name"])[
+        ["anime_id", "Name"]
+    ]
+    anime_id_2_name_map = dict(
+        zip(anime_id_2_name["anime_id"], anime_id_2_name["Name"])
+    )
 
     return user_2_anime_map, candidate_pool, anime_id_2_name_map

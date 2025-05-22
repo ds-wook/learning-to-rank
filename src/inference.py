@@ -27,7 +27,9 @@ def generate_predictions(
     top_k: int = 100,
 ) -> pd.DataFrame:
     anime_info_df_final, _, user_info = load_dataset(cfg)
-    already_liked, candidates = candidate_generation(user_id, candidate_pool, user_2_anime_map, N=10000)
+    already_liked, candidates = candidate_generation(
+        user_id, candidate_pool, user_2_anime_map, N=10000
+    )
     candidates_df = pd.DataFrame(data=pd.Series(candidates, name="anime_id"))
     features = anime_info_df_final.merge(candidates_df)
     features["user_id"] = user_id
@@ -35,7 +37,9 @@ def generate_predictions(
 
     already_liked = list(already_liked)
     if len(already_liked) < len(candidates):
-        append_list = np.full(fill_value=-1, shape=(len(candidates) - len(already_liked)))
+        append_list = np.full(
+            fill_value=-1, shape=(len(candidates) - len(already_liked))
+        )
         already_liked.extend(list(append_list))
 
     predictions = pd.DataFrame(index=candidates)
@@ -43,7 +47,9 @@ def generate_predictions(
     predictions["score"] = ranker.predict(features[feature_columns])
     predictions = predictions.sort_values(by="score", ascending=False).head(top_k)
 
-    predictions["already_liked"] = [anime_id_2_name_map.get(_id) for _id in already_liked[:top_k]]
+    predictions["already_liked"] = [
+        anime_id_2_name_map.get(_id) for _id in already_liked[:top_k]
+    ]
     return predictions
 
 
@@ -52,9 +58,13 @@ def _main(cfg: DictConfig):
     user_2_anime_map, candidate_pool, anime_id_2_name_map = load_test_dataset(cfg)
 
     ranker = (
-        lgb.Booster(model_file=Path(cfg.models.model_path) / f"{cfg.models.results}.model")
+        lgb.Booster(
+            model_file=Path(cfg.models.model_path) / f"{cfg.models.results}.model"
+        )
         if cfg.models.name == "lightgbm"
-        else CatBoostRanker().load_model(Path(cfg.models.model_path) / f"{cfg.models.results}.model")
+        else CatBoostRanker().load_model(
+            Path(cfg.models.model_path) / f"{cfg.models.results}.model"
+        )
     )
 
     user_ids = list(user_2_anime_map.keys())
@@ -74,7 +84,9 @@ def _main(cfg: DictConfig):
         already_likes.append(predictions["already_liked"].to_numpy())
         names.append(predictions["name"].tolist())
 
-    output = pd.DataFrame({"user": user_ids[: cfg.top_k], "already_liked": already_likes, "name": names})
+    output = pd.DataFrame(
+        {"user": user_ids[: cfg.top_k], "already_liked": already_likes, "name": names}
+    )
 
     # calculate NDCG@K
     table = PrettyTable()
