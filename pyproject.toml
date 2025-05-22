@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "learning-to-rank"
 version = "0.1.0"
-description = ""
+description = "^3.11"
 authors = ["ds-wook <leewook94@gmail.com>"]
 readme = "README.md"
 
